@@ -9,7 +9,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # Como executar
 
 O projeto em questão trabalha com o java 17, desenvbolvido pela IDE VSCode com as extenções: 
-<img src="https://drive.google.com/file/d/1d7M3pYo4oaPminVRsrGhSWCaHW1y4RVg/view?usp=drive_link" min-width="400px" max-width="400px" width="400px" align="center" alt="Computador iuriCode">
+![image](https://drive.google.com/file/d/1d7M3pYo4oaPminVRsrGhSWCaHW1y4RVg/view?usp=drive_link)
 
 ## ✒️ Autor
 
