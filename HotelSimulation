@@ -174,7 +174,6 @@ class Camareira extends Thread {
     }
 }
 
-
 class Recepcionista extends Thread {
     private static int count = 0;
     private List<Quarto> quartos;
