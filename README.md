@@ -24,7 +24,8 @@ Para executar este projeto, siga os passos abaixo:
 
 # Explicação do código 
 1. Quarto: Representa um quarto do hotel, com métodos para reservar, desocupar e limpar o quarto. Ele possui um número, estado de ocupação, estado de limpeza, uma fila de espera (caso o quarto esteja cheio) e uma lista de hóspedes. ![Classe Quarto](URL_da_Imagem)
-2. Hospede: Representa um hóspede do hotel, implementado como uma thread. Ele escolhe um quarto aleatório, tenta reservá-lo, permanece por um tempo no quarto, desocupa-o e depois realiza outras atividades. ![Classe Hospede](URL_da_Imagem) 
+2. Hospede:
+   - A classe Hospede representa um hóspede que reserva e desocupa quartos em um hotel, executando em uma thread separada. Seu construtor inicializa atributos como o identificador único do hóspede e a lista de quartos disponíveis. O método run() é sobrescrito da classe Thread e controla o comportamento do hóspede enquanto estiver ativo, escolhendo aleatoriamente um quarto, reservando-o por um período de tempo, desocupando-o e aguardando antes de reservar novamente. Exceções do tipo InterruptedException e QuartoCheioException são tratadas durante a execução, com a pilha de chamadas sendo impressa no console para depuração. O método parar() permite interromper a execução do hóspede.
 3. Camareira: Representa uma camareira do hotel, também implementada como uma thread. Ela verifica se os quartos estão ocupados ou não e realiza a limpeza dos quartos.
    - Atributos<br>
          count: Um contador estático para atribuir um número único a cada camareira criada.<br>
