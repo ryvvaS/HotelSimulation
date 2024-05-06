@@ -24,8 +24,21 @@ Para executar este projeto, siga os passos abaixo:
 
 # Explicação do código 
 1. Quarto: Representa um quarto do hotel, com métodos para reservar, desocupar e limpar o quarto. Ele possui um número, estado de ocupação, estado de limpeza, uma fila de espera (caso o quarto esteja cheio) e uma lista de hóspedes. ![Classe Quarto](URL_da_Imagem)
-2. Hospede: Representa um hóspede do hotel, implementado como uma thread. Ele escolhe um quarto aleatório, tenta reservá-lo, permanece por um tempo no quarto, desocupa-o e depois realiza outras atividades. ![Classe Hospede](URL_da_Imagem)
-3. Camareira: Representa uma camareira do hotel, também implementada como uma thread. Ela verifica se os quartos estão ocupados ou não e realiza a limpeza dos quartos. ![Classe Camareira](URL_da_Imagem)
+2. Hospede: Representa um hóspede do hotel, implementado como uma thread. Ele escolhe um quarto aleatório, tenta reservá-lo, permanece por um tempo no quarto, desocupa-o e depois realiza outras atividades. ![Classe Hospede](URL_da_Imagem) 
+3. Camareira: Representa uma camareira do hotel, também implementada como uma thread. Ela verifica se os quartos estão ocupados ou não e realiza a limpeza dos quartos.
+   - Atributos<br>
+         count: Um contador estático para atribuir um número único a cada camareira criada.<br>
+         quartos: Uma lista de quartos que a camareira deve limpar.<br>
+         ativo: Um booleano volátil que indica se a camareira está ativa ou não. 
+   - Construtor <br>
+         Camareira(List<Quarto> quartos): O construtor da classe recebe uma lista de quartos que a camareira será responsável por limpar. Ele inicializa o nome da           thread da camareira com um número único e define a camareira como ativa. 
+   - Métodos<br>
+         parar(): Método para parar a execução da camareira. Define o atributo ativo como falso, indicando que a camareira deve parar de limpar os quartos. <br>
+         run(): Sobrescreve o método run() da classe Thread. Este é o método principal que é executado quando a camareira é iniciada. Ele percorre a lista de                quartos, tentando limpá-los.<br> Se um quarto estiver ocupado, ele continua para o próximo quarto. Após limpar todos os quartos, a camareira aguarda um             período de 10 segundos antes de começar novamente o processo de limpeza. A execução continua até que a camareira seja explicitamente parada através do              método parar(). 
+   - Exceção<br>
+         QuartoOcupadoException: Exceção que é lançada quando a camareira tenta limpar um quarto que está ocupado. Neste caso, a camareira continua para o próximo           quarto. 
+   - Sincronização
+         O acesso aos quartos é sincronizado utilizando um bloco synchronized (quarto) para garantir que apenas uma camareira limpe um quarto por vez. 
 4. Recepcionista: Representa um recepcionista do hotel, também implementado como uma thread. Ele recebe os hóspedes, tenta reservar quartos para eles e os adiciona à fila de espera, caso não haja quartos disponíveis. ![Classe Recepcionista](URL_da_Imagem)
 # Integrantes do grupo
 1.Guilherme dos Santos Mota (UC22101328) <br>
