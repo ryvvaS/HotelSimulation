@@ -40,7 +40,45 @@ Para executar este projeto, siga os passos abaixo:
          QuartoOcupadoException: Exceção que é lançada quando a camareira tenta limpar um quarto que está ocupado. Neste caso, a camareira continua para o próximo           quarto. 
    - Sincronização
          O acesso aos quartos é sincronizado utilizando um bloco synchronized (quarto) para garantir que apenas uma camareira limpe um quarto por vez. 
-4. Recepcionista: Representa um recepcionista do hotel, também implementado como uma thread. Ele recebe os hóspedes, tenta reservar quartos para eles e os adiciona à fila de espera, caso não haja quartos disponíveis. ![Classe Recepcionista](URL_da_Imagem)
+
+4. Recepcionista: esta classe estende a classe Thread, o que permite que ela seja executada de forma concorrente. 
+
+   Ela possui os seguintes atributos:
+   
+      - quartos: uma lista de objetos do tipo Quarto, representando os quartos disponíveis no hotel.
+   
+      - filaEspera: uma fila de espera de hóspedes que aguardam por um quarto disponível.
+   
+      - ativo: um sinalizador que indica se o recepcionista está ativo ou não.
+   
+   Construtor
+      - O construtor da classe recebe como parâmetros a lista de quartos e a fila de espera.
+        
+        Ele inicializa o nome do recepcionista e define o sinalizador ativo como verdadeiro.
+   
+   Método parar
+      - Este método é usado para interromper a execução do recepcionista. Ele define o sinalizador ativo como falso.
+   
+   Método reservarQuarto
+   
+      - Este método é responsável por atribuir um quarto a um hóspede. Ele se repete sobre a lista de quartos e tenta reservar um quarto para o hóspede.
+      - 
+        Se um quarto estiver cheio, o hóspede é adicionado à fila de espera. O método é sincronizado para garantir que a operação de reserva seja thread-safe.
+   
+   Método run
+   
+      - Este método é executado quando o recepcionista é iniciado como uma thread. Ele entra em um loop enquanto o recepcionista estiver ativo.
+        
+        Dentro do loop, o recepcionista verifica se há hóspedes na fila de espera e  tenta atribuir quartos a eles. Se a fila de espera estiver vazia, o recepcionista para sua execução.
+        
+        Após cada iteração do loop, o recepcionista aguarda 5 segundos antes de continuar, simulando o tempo que leva para atender os hóspedes.
+   
+   Observações
+      - O método synchronized faz uso de sincronização para garantir que operações críticas, como a reserva de quartos e o acesso à fila de espera.
+        
+      - Uma exceção QuartoCheioException é lançada quando um quarto está cheio e não pode ser reservado.
+   
+
 # Integrantes do grupo
 1.Guilherme dos Santos Mota (UC22101328) <br>
 2.Matheus Da Cruz Santos (UC21200334) <br>
