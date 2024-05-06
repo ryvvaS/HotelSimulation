@@ -27,6 +27,11 @@ Para executar este projeto, siga os passos abaixo:
 2. Hospede: Representa um hóspede do hotel, implementado como uma thread. Ele escolhe um quarto aleatório, tenta reservá-lo, permanece por um tempo no quarto, desocupa-o e depois realiza outras atividades. ![Classe Hospede](URL_da_Imagem)
 3. Camareira: Representa uma camareira do hotel, também implementada como uma thread. Ela verifica se os quartos estão ocupados ou não e realiza a limpeza dos quartos. ![Classe Camareira](URL_da_Imagem)
 4. Recepcionista: Representa um recepcionista do hotel, também implementado como uma thread. Ele recebe os hóspedes, tenta reservar quartos para eles e os adiciona à fila de espera, caso não haja quartos disponíveis. ![Classe Recepcionista](URL_da_Imagem)
+# Integrantes do grupo
+1.Guilherme dos Santos Mota (UC22101328)
+2.Matheus Da Cruz Santos (UC21200334)
+3.Ryann Vitório Vasconcelos (UC21200006)
+4.Gabriel Felipe Rezende de Jesus (UC22101458)
 
 ## 🎁 Créditos
 
