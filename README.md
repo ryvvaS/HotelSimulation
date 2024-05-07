@@ -19,14 +19,36 @@ Para executar este projeto, siga os passos abaixo:
    - [Project Manager for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-dependency)
 3. Clone este repositório em sua máquina local.
 4. Abra o projeto em sua IDE.
-5. Execute o arquivo `HotelSimulation.java`.
+5. Execute o arquivo `HotelSimulation.java`, dentro de um pckage chamado "atv2".
 6. Observe a saída no console para acompanhar a simulação do sistema.
 
 # Explicação do código 
-1. Quarto: Representa um quarto do hotel, com métodos para reservar, desocupar e limpar o quarto. Ele possui um número, estado de ocupação, estado de limpeza, uma fila de espera (caso o quarto esteja cheio) e uma lista de hóspedes. ![Classe Quarto](URL_da_Imagem)
-2. Hospede:
+# 1. Quarto:
+
+A classe `Quarto` é parte de um sistema que simula a operação de um hotel. Ela representa um quarto individual dentro do hotel.
+
+## Propriedades
+
+- `numero`: O número identificador do quarto.
+- `ocupado`: Um booleano que indica se o quarto está ocupado.
+- `limpo`: Um booleano que indica se o quarto está limpo.
+- `hospedes`: Um array de objetos `Hospede` que representa os hóspedes atualmente hospedados no quarto. A capacidade máxima é de 4 hóspedes.
+- `numHospedes`: Um contador do número atual de hóspedes no quarto.
+
+## Métodos
+
+- `reservar(Hospede hospede)`: Este método permite a um objeto `Hospede` reservar o quarto. Se o quarto estiver cheio ou em processo de limpeza, o hóspede será colocado em uma fila de espera. Se o quarto estiver ocupado, uma exceção `QuartoCheioException` será lançada.
+- `desocupar()`: Este método desocupa o quarto, removendo todos os hóspedes e marcando o quarto como não limpo. Ele também notifica todos os hóspedes na fila de espera.
+- `limpar()`: Este método limpa o quarto. Se o quarto estiver ocupado, uma exceção `QuartoOcupadoException` será lançada. Após a limpeza, o quarto é marcado como limpo e todos os hóspedes na fila de espera são notificados.
+- `isLimpo()`: Este método retorna o estado de limpeza do quarto.
+- `isOcupado()`: Este método retorna o estado de ocupação do quarto.
+
+Essa classe é thread-safe, o que significa que ela pode ser usada em um ambiente multithread sem problemas de concorrência. Isso é feito através do uso de métodos `synchronized` e das funções `wait()` e `notifyAll()`. Essas funções colocam threads em espera quando o quarto está cheio ou sendo limpo, e notificam as threads quando o quarto é desocupado ou limpo.
+
+# 2. Hospede:
    - A classe Hospede representa um hóspede que reserva e desocupa quartos em um hotel, executando em uma thread separada. Seu construtor inicializa atributos como o identificador único do hóspede e a lista de quartos disponíveis. O método run() é sobrescrito da classe Thread e controla o comportamento do hóspede enquanto estiver ativo, escolhendo aleatoriamente um quarto, reservando-o por um período de tempo, desocupando-o e aguardando antes de reservar novamente. Exceções do tipo InterruptedException e QuartoCheioException são tratadas durante a execução, com a pilha de chamadas sendo impressa no console para depuração. O método parar() permite interromper a execução do hóspede.
-3. Camareira: Representa uma camareira do hotel, também implementada como uma thread. Ela verifica se os quartos estão ocupados ou não e realiza a limpeza dos quartos.
+# 3. Camareira: 
+Representa uma camareira do hotel, também implementada como uma thread. Ela verifica se os quartos estão ocupados ou não e realiza a limpeza dos quartos.
    - Atributos<br>
          count: Um contador estático para atribuir um número único a cada camareira criada.<br>
          quartos: Uma lista de quartos que a camareira deve limpar.<br>
@@ -41,7 +63,7 @@ Para executar este projeto, siga os passos abaixo:
    - Sincronização
          O acesso aos quartos é sincronizado utilizando um bloco synchronized (quarto) para garantir que apenas uma camareira limpe um quarto por vez. 
 
-4. Recepcionista: esta classe estende a classe Thread, o que permite que ela seja executada de forma concorrente. 
+# 4. Recepcionista: esta classe estende a classe Thread, o que permite que ela seja executada de forma concorrente. 
 
    Ela possui os seguintes atributos:
    
